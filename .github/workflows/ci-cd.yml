@@ -12,6 +12,7 @@ on:
     # The branches below must match the branches that you would like to trigger on push requests
     branches:
       - develop
+      - main
 
     tags:
       - 'v*.*.*'
@@ -26,7 +27,7 @@ env:
 
 jobs:
   CI:
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
 
     services:
       mysql:
@@ -67,7 +68,7 @@ jobs:
   CD:
     if: ${{ github.event_name != 'pull_request' }}
 
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
     needs: CI
 
     permissions:
